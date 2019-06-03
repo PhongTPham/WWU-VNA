@@ -1,0 +1,12 @@
+(sym_lib_table
+  (lib (name 2019_VNA-rescue)(type Legacy)(uri ${KIPRJMOD}/2019_VNA-rescue.lib)(options "")(descr ""))
+  (lib (name si5351a)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/si5351a.lib")(options "")(descr ""))
+  (lib (name cx3225)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/cx3225.lib")(options "")(descr ""))
+  (lib (name 2019-Modified-VNA-rescue)(type Legacy)(uri "${KIPRJMOD}/2019 Modified VNA-rescue.lib")(options "")(descr ""))
+  (lib (name test)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/test.lib")(options "")(descr ""))
+  (lib (name nl7w66)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/nl7w66.lib")(options "")(descr ""))
+  (lib (name lt6231)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/lt6231.lib")(options "")(descr ""))
+  (lib (name emblem)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/emblem.lib")(options "")(descr ""))
+  (lib (name 2017_VNA-cache)(type Legacy)(uri "/home/phong.pham/Desktop/WWU-VNA-master/2017 VNA Kicad/2017 VNA-cache.lib")(options "")(descr ""))
+  (lib (name 2019-PHAM-Modified-VNA-V3-rescue)(type Legacy)(uri "${KIPRJMOD}/2019 PHAM Modified VNA V3-rescue.lib")(options "")(descr ""))
+)
