@@ -42,16 +42,18 @@
  *             ------------------
  *         /|\|                  |
  *          | |                  |
- *          --|RST         P5.1  |<--- A4 (Analog Input, Measured) (was P4.0 A13)
- *            |            P4.7  |<--- A6 (Analog Input, Reference) (was P6.1 A14)
- *            |                  |
- *            |                  |
+ *          --|RST         P5.5  |<--- A0 (Analog Input, Reference)
+ *            |            P5.4  |<--- A1 (Analog Input, Reference)
+ *            |            P5.1  |<--- A4 (Analog Input, Test)
+ *            |            P5.0  |<--- A5 (Analog Input, Test)
  *
  *
  *
  * Author: Timothy Logan
  * This was modified by Rob Frohne and J.D. Priddy.  It works in concert with
  * Energia.
+ * This was further modified by Phong Pham to activate the differential
+ * mode of the MSP432.
  ******************************************************************************/
 #include "adc14vna.h"
 /* Standard Includes */
@@ -169,22 +171,12 @@ int adc14_main(void)
      */
     MAP_GPIO_setAsPeripheralModuleFunctionOutputPin(GPIO_PORT_P2, GPIO_PIN4,
         GPIO_PRIMARY_MODULE_FUNCTION);
-    /* Configuring ADC Memory (ADC_MEM6 - ADC_MEM7 (A6 - A4)  without repeat)
-     * with internal 2.5v reference */
 
-   /* MAP_ADC14_configureMultiSequenceMode(ADC_MEM6, ADC_MEM7, false);
-    MAP_ADC14_configureConversionMemory(ADC_MEM6,
-            ADC_VREFPOS_INTBUF_VREFNEG_VSS,
-            ADC_INPUT_A6, ADC_NONDIFFERENTIAL_INPUTS);
-    MAP_ADC14_configureConversionMemory(ADC_MEM7,
-            ADC_VREFPOS_INTBUF_VREFNEG_VSS,
-            ADC_INPUT_A4, ADC_NONDIFFERENTIAL_INPUTS); */
-
-    /* Configuring ADC Memory (ADC_MEM0 A0/A1 and A4/A5 Differential) in repeat mode */
-    MAP_ADC14_configureSingleSampleMode(ADC_MEM0, ADC_MEM2, true);
+     /* Configuring ADC Memory (ADC_MEM0 A0/A1 and ADC_MEM1 A4/A5 Differential) in repeat mode */
+    MAP_ADC14_configureSingleSampleMode(ADC_MEM0,ADC_MEM1, true);
     MAP_ADC14_configureConversionMemory(ADC_MEM0, ADC_VREFPOS_AVCC_VREFNEG_VSS,
             ADC_INPUT_A0, true);
-    MAP_ADC14_configureConversionMemory(ADC_MEM2, ADC_VREFPOS_AVCC_VREFNEG_VSS,
+    MAP_ADC14_configureConversionMemory(ADC_MEM0, ADC_VREFPOS_AVCC_VREFNEG_VSS,
             ADC_INPUT_A4, true);
 
     /* Switching data mode to 2's Complement mode */
