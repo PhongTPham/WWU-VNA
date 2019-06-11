@@ -97,6 +97,7 @@ void sweepFreqMeas(char **values, int valueCount)
 {
     unsigned long long fMin, fMax, deltaFreq, freq[MAX_NUMBER_FREQ];
     int i;
+    Serial.println("Sweeping: \n");
     if(valueCount != 4)
     {
         Serial.println("In sweepFreqMeas, number of arguments is not correct.");
@@ -119,7 +120,6 @@ void sweepFreqMeas(char **values, int valueCount)
     * measurements quicker.  It would also speed things up to send binary data,
     * but this is harder to debug, so for now, we want to use ASCII.
     */
-
    for(i=0;i<numberFrequenciestoMeasure;i++)
    {
        freq[i]=fMin+i*deltaFreq;
@@ -151,9 +151,7 @@ void computeFundamental()
     computation m;
     // Real computation
     computation r;
-
     startConversion();
-
     while(!doneADC) {
         // Wait for next measurement
         while(!doneConv) { /* about 800k cycles doing nothing :(  Applying a filter takes about 50k-55k*/}
@@ -260,6 +258,8 @@ void setOscillator (unsigned long long freq) // freq in Hz
 {
 
     si5351.set_freq(freq*100ULL, SI5351_CLK0);
+    delay(5);
+    si5351.set_freq(freq*100ULL, SI5351_CLK1);
     delay(5);
     si5351.set_freq(freq*100ULL-100ULL*F_IF, SI5351_CLK2); // LO_I
     delay(5); // Wait for oscillator and steady state.  Do we need 1 second?
