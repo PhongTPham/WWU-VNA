@@ -1,0 +1,58 @@
+The hardware files can be found at this repository:
+
+https://github.com/PhongTPham/WWU-VNA These instructions were done an a Ubuntu Linux computer. They will vary slightly for Windows or OS X. The program can be run from Code Composer Studio or Energia.
+Build Instructions:
+
+Choose a designation , open the terminal and git clone the repository
+
+    Install Code Composer Studio. (This works with CCS 8.2 and 9.0.)
+
+    You need the MSP432 Red board library version 5.23.1 or later or you will have build errors.
+
+    Install Energia, and using Energia's Tools->Boards:->Boards Manager, add the MSP432P401P (red board)
+
+    Energia uses the Arduino way of handling libraries, and CCS knows how to import things. You should
+
+    create folders for your libraries, the ones for this design are:
+
+       adc14vna
+
+       constants
+
+       DynamicCommandParser
+
+       si5351
+
+       SignalProcessing
+
+    You should then symbolically link these to the libraries present in the repositories library folders for Energia.
+
+    Afterwards you should import Energia Sketch using File->Import...->Energia->Energia Sketch.
+        Select MSP432P401R as the processor and install the correct board in board manager if needed (Energia)
+        Right click on the project, and select add files.
+            Add the .cpp, .c, and .h files.
+            Under Build Settings->Miscellaneous->Miscellaneous C++ source specific flags add -fpermissive.
+
+Usage:
+CCS
+
+    Click the hammer to build in CCS.
+    After successfully compiling, click on the debug command
+    Open CuteCom and type in commands for present in wwu_vna.ino
+
+Energia
+
+    To build in Energia, go to sketch and then upload.
+    Then click on on tools to open up serial monitor and then type in the commands present in wuu_vna.ino with the respective parameters chosen at users discretion
+
+wwu_vna.ino commands include:
+
+For frequency sweep: "^SWEEP,Fmin,Fmax,NFreq$"
+
+Returns single frequency measurements as a function of time:  "^TIME,Freq$"
+
+Returns the sample rate:  "^SAMPLERATE,1=TIME/0=COMPUTE$"
+
+Returns the dft around 155 HZ with a bin of about 10 HZ:  "^COMPUTE,Fs$"
+
+To plot any of these Octave or Matlab can be used. 
